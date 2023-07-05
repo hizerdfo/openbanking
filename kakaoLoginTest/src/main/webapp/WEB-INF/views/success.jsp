@@ -11,5 +11,6 @@
 
     <h1>로그인 성공입니다</h1>
 
+    <input type="button" value="로그아웃" onclick="location.href='/logout'">
 </body>
 </html>

@@ -140,12 +140,15 @@ public class KakaoAPI {
             while ((line = br.readLine()) != null) {
                 result += line;
             }
-            System.out.println(result);
+            br.close();
+
+            System.out.println("response body : " + result);
+            System.out.println("카카오 로그아웃 완료");
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
+
 
 
 }
