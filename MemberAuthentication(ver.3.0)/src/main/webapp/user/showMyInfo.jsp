@@ -9,116 +9,25 @@
 <link rel="stylesheet" href="static/css/styles.css">
 <meta charset="UTF-8">
 <title>유저정보</title>
+<link rel="stylesheet" href="static/css/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
 <style>
  @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
- @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
- 
-    body {
-      font-family: 'NanumSquareRound', sans-serif;
-    }
+ @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');  
 
-    h2 {
-      color: #333;
-      text-align: center;
-    }
-
-    .container {
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .user-box {
-      display: inline-block;
-      width: 400px;
-      margin: 20px;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      background-color: #f5f5f5;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .user-info {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .user-input {
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .user-input strong {
-      width: 100px;
-      margin-bottom: 5px;
-      text-align: center;
-    }
-
-    .user-input input[type="text"] {
-      width: 200px;
-      padding: 6px;
-      border: none;
-      border-radius: 4px;
-      background-color: #ffffff;
-      text-align: center;
-    }
-
-    .user-button {
-      margin-top: 20px;
-    }
-
-    .back-link {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-      text-align: center;
-      color: #6610f2;
-      text-decoration: none;
-    }
-
-    .back-link button {
-      width: 200px;
-      padding: 8px;
-      border: none;
-      background-color: #6610f2;
-      color: #fff;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-	.back-link button {
-      width: 200px;
-      padding: 8px;
-      border: none;
-      background-color: #6610f2;
-      color: #fff;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .back-link button:hover {
-      background-color: #ff6b9b;
-    }
 </style>
 </head>
 <body>
-	<div id = first-header>
-		<div id="main-text">
-		    TH은행
-		</div>
-		<div class="first-header-container">
-		                    <button class="header-button1" onclick="location.href='./checkMemberById.bank'">개인정보관리</button>
-		                    <button class="header-button1" onclick="location.href='./timeDepositSelect.bank'">금융상품보기</button>
-		                    <button class="header-button1" onclick="location.href='./accountSelect.bank'">조회</button>
-		                    <button class="header-button1" onclick="location.href='./transfer.bank'">이체</button>
-		                    <button class="header-button2" onclick="location.href='./logout.bank'">로그아웃</button>
-		</div>
-	</div>
-	<br>
-	<hr>
+	<jsp:include page ="/include/menuHeader.jsp"></jsp:include>
   <div class="container">
     <h1>유저정보조회</h1>
-    
+    <hr>
+    <br>
     <%	
     	String id;
 		boolean isAdmin = (boolean) session.getAttribute("isAdmin");
@@ -179,16 +88,12 @@
           <input type="text" value="<%=dto.getGrade() %>" readonly>
         </div>
       </div> 
-      <div>
-        <button onclick="manageMyInfoInput('<%=dto.getId() %>')" style="font-family: 'Hana'; background-color: pink;">개인 정보 수정</button>
-      </div>
-      <div>
-        <button onclick="deleteMember('<%=dto.getId() %>')" style="font-family: 'Hana'; background-color: pink;">회원 탈퇴</button>
-      </div>
-    </div>
-        <div class="back-link">
-      <button onclick="location.href='./Main.bank'" style="font-family: 'Hana'; background-color: pink;">메인페이지로 이동하기</button>
-    </div>
+      <br><br>
+      <div class="button-container">
+		  <button onclick="manageMyInfoInput('<%=dto.getId() %>')" class="info-button">개인 정보 수정</button>
+		  <button onclick="deleteMember('<%=dto.getId() %>')" class="delete-button">회원 탈퇴</button>
+		  <button onclick="location.href='./Main.bank'" class="back-button">메인페이지로 이동하기</button>
+		</div>
     
   </div>
   <script>

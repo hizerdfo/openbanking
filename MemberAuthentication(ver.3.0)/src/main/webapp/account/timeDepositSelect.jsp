@@ -9,26 +9,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="static/css/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
 <style>
-table {
-	border-collapse: collapse;
-	width: 100%;
-}
 
-th, td {
-	border: 1px solid black;
-	padding: 8px;
-	text-align: left;
-}
-
-th {
-	background-color: #f2f2f2;
-}
 </style>
 </head>
 <body>
-	<h2>상품 내역 확인</h2>
-	<table>
+<jsp:include page="/include/mainHeader.jsp"></jsp:include>
+	<div class ="container">
+	<h1>상품 내역 확인</h1>
+	<table class="custom-table">
 		<tr>
 			<th>상품코드</th>
 			<th>상품분류</th>
@@ -51,13 +47,13 @@ th {
 			<td><%=timeDepositName%></td>
 			<td>
 				<form action="accJoinCheck.jsp" method="post">
-
 					<input type="hidden" name="timeDepositCode"
-						value="<%=timeDepositCode%>"> <input type="hidden"
-						name="timeDepositType" value="<%=timeDepositType%>"> <input
-						type="hidden" name="timeDepositName"
-						value="<%=timeDepositName%>"> 
-						<input type="submit" value="가입하기">
+						value="<%=timeDepositCode%>">
+					<input type="hidden" name="timeDepositType"
+						value="<%=timeDepositType%>">
+					<input type="hidden" name="timeDepositName"
+						value="<%=timeDepositName%>">
+					<input type="submit" value="가입하기">
 				</form>
 			</td>
 		</tr>
@@ -67,7 +63,9 @@ th {
 	</table>
 	<br />
 	<br />
-	<button onclick="window.location.href='./Main.jsp'">메인으로 돌아가기</button>
+	<button onclick="window.location.href='./Main.jsp'" class="custom-button">메인으로</button>
+</div>
 
+<jsp:include page="/include/mainFooter.jsp"></jsp:include>
 </body>
 </html>

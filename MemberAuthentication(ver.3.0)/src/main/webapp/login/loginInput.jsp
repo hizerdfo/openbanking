@@ -9,79 +9,41 @@
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.security.SecureRandom" %>
 <%@ page import="java.math.BigInteger" %> 
-
+<link rel="stylesheet" href="static/css/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
 <title>Login</title>
 <style>
  @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
  @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
  
- 
-	body {
-		font-family: 'NanumSquareRound', sans-serif;
-		background: linear-gradient(-45deg, #fc5c7d,#6610f2, #6a82fb, #eaafc8);
-		animation: gradient 15s ease infinite;
-		background-size: 400% 400%;
-
-	}
-h1 {
-	text-align: center;
-}
-
-form {
-	width: 300px;
-	margin: 0 auto;
-	background-color: #fff;
-	border-radius: 5px;
-	padding: 20px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-table {
-	width: 100%;
-}
-
-table td {
-	padding: 5px;
-}
-
-input[type="text"],
-input[type="password"] {
-	width: 90%;
-	padding: 8px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-}
-
-input[type="submit"] {
-	width: 100%;
-	padding: 8px;
-	border: none;
-	background-color: #6610f2;
-	color: #fff;
-	cursor: pointer;
-	border-radius: 4px;
-}
-
-input[type="submit"]:hover {
-	background-color: #6a82fb;
-}
 </style>
 </head>
 <body>
+<jsp:include page="/include/mainHeader.jsp"></jsp:include>
+	
 	<form action="login.bank" method="post">
 		<h1>로그인</h1>
-		<hr>
 		<table>
 			<tr>
-				<td><b>아이디 : </b></td>
+				<td><b>아이디 </b></td><br>
+			</tr>
+			<tr>
 				<td><input type="text" name="id" placeholder="아이디" required></td>
 			</tr>
 			<tr>
-				<td><b>비밀번호 : </b></td>
+				<td><b>비밀번호 </b></td>
+			</tr>
+			<tr>
 				<td><input type="password" name="password" placeholder="비밀번호" required></td>
 			</tr>
 		</table>
-		<input type="submit" value="로그인">
+		<br>
+		<input type="submit" value="로그인"> <br><br><hr><br>
 		  	<%
     			String clientId = "OeudOcIy6D5r8PXWPnVA";//애플리케이션 클라이언트 아이디값";
     			String redirectURI = URLEncoder.encode("http://192.168.123.2:8080/MemberAuthentication/naverLoginCallback.jsp", "UTF-8");
@@ -93,7 +55,67 @@ input[type="submit"]:hover {
     			apiURL += "&state=" + state;
     			session.setAttribute("state", state);
  		  	%>
- 		  <a href="<%=apiURL%>"><img height="30" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+ 		  	<div>
+ 		  	<a href="<%=apiURL%>"><img height="40px" src="static/img/naver.png" style="border-radius: 50%;"></a>
+            <a href="javascript:kakaoLogin()">
+            <img src="<c:url value='/static/img/kakao.png'/>" style="width: 40px; border-radius: 50%;"></a>
+        	</div>
+    </form>
+        <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+		<script type="text/javascript">
+		    Kakao.init('229db5dc03f8bfd9e48ca85e6ecf82de');
+		    function kakaoLogin() {
+		        Kakao.Auth.login({
+		            success: function (response) {
+		                Kakao.API.request({
+		                    url: '/v2/user/me',
+		                    success: function (response) {
+		                        // 서버로 정보를 전송하기 위한 AJAX 요청
+		                        var xhr = new XMLHttpRequest();
+		                        xhr.open("POST", "kakaoLogin.bank", true);
+		                        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		                        xhr.onload = function () {
+		                        	if (xhr.status === 200) {
+		                        	    var result = JSON.parse(xhr.responseText);
+		                        	    if (result.redirect) {
+		                        	    	var redirectUrl = result.redirect;
+		                        	        redirectUrl += "?refinedEmail=" + encodeURIComponent(result.refinedEmail);
+		                        	        console.log(redirectUrl);
+		                        	        window.location.href = redirectUrl;
+		                        	    }else {
+											var email = result.email;
+											document.getElementById('emailInput').value = email;
+										}
+		                        	    console.log(result);
+		                        	} else {
+		                                alert("요청 실패");
+		                                
+		                            }
+		                        };
+
+		                        // JSON 데이터 생성 및 전송
+		                        var jsonData = {
+		                            properties: response.properties,
+		                            kakao_account: response.kakao_account
+		                        };
+		                        xhr.send(JSON.stringify(jsonData));
+		                    },
+		                    fail: function (error) {
+		                        alert(JSON.stringify(error));
+		                    }
+		                })
+		            },
+		            fail: function (error) {
+		                alert(JSON.stringify(error));
+		            },
+		        })
+		    }
+
+		</script>
+		
 	</form>
+	<br><br>
+	<jsp:include page="/include/mainFooter.jsp"></jsp:include>
+	
 </body>
 </html>

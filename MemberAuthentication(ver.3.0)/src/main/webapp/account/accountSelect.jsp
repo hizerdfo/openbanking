@@ -9,29 +9,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="static/css/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
 <style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-    th, td {
-        border: 1px solid black;
-        padding: 8px;
-        text-align: left;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
+ @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
+ @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');  
+
 </style>
 </head>
 <body>
+<jsp:include page ="/include/menuHeader.jsp"></jsp:include>
+	<div class ="container">
 <%
     String name = (String) session.getAttribute("name");
 %>
 
 <h1>조회</h1>
 <%
-    out.println(name + " 고객님");
+    //out.println(name + " 고객님");
 %>
 <br/>
 <%
@@ -40,12 +40,18 @@
     ArrayList<TimeDepositDTO> dtoList = dao.accountCheck(custId);
     int dtoListSize = dtoList.size(); // dtoList의 개수 저장
     
-    out.println("총 1개 금융기관에 "+ dtoListSize +"개의 계좌가 등록되어 있습니다.");
+    //out.println("총 1개 금융기관에 "+ dtoListSize +"개의 계좌가 등록되어 있습니다.");
 %>
+<div id ="search-container">
+<span id="customer-name"><%= name %> 고객님</span>
+<br/>
+<span id="account-info">총 1개 금융기관에 <%= dtoListSize %>개의 계좌가 등록되어 있습니다.</span>
+<br/><br/>
+</div>
 <br/><br/>
 
-<h2>보유계좌목록</h2>
-<table>
+<h3 style="text-align: left;">보유계좌목록</h3>
+<table class = "custom-table">
     <tr>
         <th>상품분류</th>
         <th>계좌명</th>
@@ -87,7 +93,7 @@
     %>
 </table>
 <br/><br/>
-<button onclick="window.location.href='./Main.jsp'">메인으로 돌아가기</button>
-
+<button onclick="window.location.href='./Main.jsp'" class="custom-button">메인으로</button>
+</div>
 </body>
 </html>

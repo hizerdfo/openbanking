@@ -1,117 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>회원가입</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<meta charset="EUC-KR">
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %> 
+<link rel="stylesheet" href="static/css/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<title>Login</title>
 <style>
  @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
  @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
-    
-@font-face {
-	font-family: 'NanumSquareRound', sans-serif;
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2')
-		format('woff2');
-	font-weight: normal;
-	font-style: normal;
-}
-
-body {
-	font-family: 'NanumSquareRound', sans-serif;
-	background: linear-gradient(-45deg, #fc5c7d,#6610f2, #6a82fb, #eaafc8);
-	animation: gradient 15s ease infinite;
-	background-size: 400% 400%;
-
-	display: flex;
-	align-items: center; /* 수직 가운데 정렬 */
-	justify-content: center; /* 수평 가운데 정렬 */
-	min-height: 100vh; /* 화면 전체 높이로 설정 */
-	margin: 0;
-	padding: 20px;
-}
-
-h1 {
-	text-align: center;
-}
-
-form {
-	max-width: 1000px;
-	margin: 0 auto;
-	background-color: #fff;
-	border-radius: 5px;
-	padding: 20px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-form table {
-	width: 100%;
-}
-
-form table td {
-	padding: 5px;
-}
-
-input[type="text"], input[type="password"], input[type="email"], input[type="tel"]
-	{
-	width: 90%;
-	padding: 8px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-}
-
-input[type="submit"] {
-	width: 200px;
-	padding: 8px;
-	border: none;
-	background-color: #6610f2;
-	color: #fff;
-	cursor: pointer;
-	border-radius: 4px;
-}
-
-input[type="submit"]:hover {
-	background-color: #6a82fb;
-}
-
-#loginButton {
-  background-color: #000000;
-}
-
-
-#joinButton {
-
-}
-
-button {
-  width: 200px;
-  padding: 8px;
-  border: none;
-  background-color: #555;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 4px;
-  display: inline-block;
-  margin-right: 10px;
-}
-
-
-button:hover {
-	background-color: #333;
-}
-
-.error-message {
-	color: red;
-	display: none;
-}
+ 
+ 
 </style>
 </head>
 <body>
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
 	<script>
 		function sample4_execDaumPostcode() {
 			new daum.Postcode(
@@ -219,7 +136,23 @@ button:hover {
 			var pattern = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 			return pattern.test(email);
 		}
+		
 	</script>
+	<script type="text/javascript">
+    $(document).ready(function() {
+        // URL에서 이메일 값을 가져와서 이메일 입력란에 설정
+        function getEmailFromURL() {
+            var urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('refinedEmail');
+        }
+
+        var refinedEmail = getEmailFromURL();
+        $('#emailInput').val(refinedEmail);
+	    });
+	</script>
+	<jsp:include page="/include/mainHeader.jsp"></jsp:include>
+	<br><br>
+	
 	<form id="joinForm" action="join.bank" method="post">
 		<h1>회원가입</h1>
 		<hr>
@@ -255,10 +188,11 @@ button:hover {
 					required></td>
 			</tr>
 			<tr>
-				<td><b>이메일:</b></td>
-				<td><input type="email" name="email"
-					placeholder="이메일 (예: example@example.com)" required></td>
+			  <td><b>이메일:</b></td>
+			  <td><input type="email" name="email" placeholder="이메일 (예: example@example.com)" id ="emailInput"  required></td>
 			</tr>
+
+
 			<tr>
 				<td><b>주소:</b></td>
 				<td><input type="text" id="sample4_postcode"
@@ -278,15 +212,19 @@ button:hover {
     <tr>
       <td></td>
       <td>
+      <br>
         <input id="joinButton" type="submit" value="회원가입">
-        <button id="loginButton" onclick="location.href='./loginInput.bank'">로그인 페이지로 이동</button>
+        <button id="loginButton" onclick="loginInput.bank">로그인</button>
       </td>
     </tr>
     
 	</table>
 
 	</form>
+	
 	<br>
-
+	<br><br>
+	
+<jsp:include page="/include/mainFooter.jsp"></jsp:include>
 </body>
 </html>
