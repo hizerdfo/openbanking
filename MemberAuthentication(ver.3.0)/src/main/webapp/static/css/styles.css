@@ -1,0 +1,259 @@
+@charset "EUC-KR";
+
+/*first header 상단 메뉴*/
+#first-header{
+	margin:50px auto 0;
+	height:70px;
+	width:80%;
+	display: flex;
+    justify-content: center;
+}
+.first-header-container{
+	text-align: center;
+	display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    width:80%;
+    margin:0 auto;
+}
+hr{
+	width:80%;
+}
+.header-button1{
+	padding: 8px 16px;
+    color: #6610f2;
+    background-color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    margin:3px;
+}
+.header-button2{
+	padding: 8px 16px;
+    color: white;
+    background-color: #6610f2;
+    text-decoration: none;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    margin:3px;
+}
+/*Main.jsp*/
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 100px;
+  background-color: #fff;
+  margin-top: 10px;
+}
+
+#main-text {
+  color: #6610f2;
+  font-size: 40px;
+  font-weight: 1000;
+  font-family: 'NanumSquareRound', sans-serif;
+  margin-right: 20px; /* Add margin to create space between "TH은행" and the menu */
+}
+#main_wrap{
+	display: block;
+}
+.menu {
+  display: flex;
+  justify-content: flex-end; /* Position the menu items on the right side */
+  align-items: center; /* Align menu items vertically in the center */
+}
+
+.menu a {
+  margin-left: 10px;
+  padding: 8px 12px;
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.menu a:hover {
+  color: #6610f2;
+}
+
+#main_color {
+  text-align: center;
+  width:100%;
+  /*배경 애니메이션*/
+  background: linear-gradient(-45deg, #fc5c7d,#6610f2, #6a82fb, #eaafc8);
+	animation: gradient 15s ease infinite;
+	background-size: 400% 400%;
+
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  font-family: 'NanumSquareRound', sans-serif;
+  font-weight: bold;
+  position: relative;
+  margin:0 auto;
+  margin-bottom: 0;
+}
+
+#main_color > #main_content > h3 {
+  text-align: left;
+  color: #fff;
+}
+
+#main_color > #main_content > h1 {
+  text-align: left;
+  color: #fff;
+  font-weight: bolder;
+  font-size: 100px;
+  margin: 0;
+  text-align: left;
+}
+
+#main_color > #main_content > p {
+  color: #fff;
+  margin: 5px;
+  text-align: left;
+}
+
+#image-container > img {
+  width: 100px;
+  height: 100px;
+  display: flex;
+}
+
+#image-container {
+  display: flex;
+}
+
+#image-container > h1 {
+  text-align: left;
+  color: #ff5ab3;
+  font-weight: bolder;
+  font-size: 100px;
+  margin: 0;
+  
+}
+
+/*고객센터 이벤트 버튼 */
+#button-container {
+  display: flex;
+  text-align: left;
+  margin-top: 20px;
+}
+
+#button-container a.button {
+  padding: 10px 20px;
+  background-color: #fff !important;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 20px;
+  border-radius: 20px;
+  height: 25px;
+  width: 90px;
+  line-height: 30px;
+  text-align: center;
+}
+
+#button-container a.button:hover {
+  color: #6a82fb;
+}
+
+/*추천상품*/
+#main_content {
+  float: left;
+  width: 70%;
+  margin: 30px;
+}
+
+#main_color > #main-recommand {
+  width: 30%;
+  margin:20px;
+  
+}
+
+#main-recommand #recommand1 {
+  background-color: antiquewhite;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 20px;
+}
+
+#main-recommand #recommand2 {
+  background-color: antiquewhite;
+  width: 100%;
+  height: 300px;
+}
+
+
+/*밑에 이용약관 부분 */
+#terms {
+  margin: 0;
+  width: 100%;
+  background: #444;
+  color: #fff;
+  height: 300px;
+  line-height: 300px;
+  clear: both;
+  text-align: center;
+  margin-top: 0;
+}
+.button-user-container{
+	display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    
+}
+.button2 {
+	background-color: #6610f2;
+    padding: 8px 16px;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    margin:3px;
+}
+.button1 {
+    padding: 8px 16px;
+    color: #6610f2;
+    background-color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    margin:3px;
+}
+
+.button1:hover {
+    color: white;
+    background-color: #6610f2;
+}
+.button2:hover{
+	color:#6610f2;
+	background-color: white;
+}
+/*joinInput.jsp*/
+
+
+/* Media Queries for Responsive Layout */
+@media (max-width: 768px) {
+  #main_color {
+    flex-direction: column;
+    padding-right: 0;
+  }
+
+  #main_content {
+    width: 100%;
+  }
+
+  #main_color > #main-recommand {
+    width: 50%;
+  }
+}
