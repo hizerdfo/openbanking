@@ -4,83 +4,43 @@
 <head>
     <meta charset="EUC-KR">
     <title>Manage My Info</title>
-    <style>
-        body {
-            font-family: 'Hana', Arial, sans-serif;
-            background-color: #f2f2f2;
-        }
+<link rel="stylesheet" href="/static/css/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
+ @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');  
 
-        form {
-            width: 400px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+</style>
+<script>
+window.addEventListener("wheel", function(e){
+    e.preventDefault();
+},{passive : false});
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
+var mHtml = $("html");
+var page = 1;
 
-        table td {
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
+mHtml.animate({scrollTop : 0}, 10);
 
-        table td:first-child {
-            width: 120px;
-            font-weight: bold;
-            vertical-align: top;
-        }
-
-        input[type="password"],
-        input[type="text"],
-        input[type="email"] {
-            width: 100%;
-            padding: 6px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-family: 'Hana', Arial, sans-serif;
-        }
-
-        input[type="password"]::placeholder,
-        input[type="text"]::placeholder,
-        input[type="email"]::placeholder {
-            font-family: 'Hana', Arial, sans-serif;
-            font-style: italic;
-        }
-
-        input[type="submit"] {
-            width: 100%;
-            padding: 8px;
-            border: none;
-            background-color: pink;
-            color: #fff;
-            cursor: pointer;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #ff6b9b;
-        }
-
-        .error-message {
-            color: red;
-            margin-top: 5px;
-            display: none;
-        }
-    </style>
+$(window).on("wheel", function(e) {
+    if(mHtml.is(":animated")) return;
+    if(e.originalEvent.deltaY > 0) {
+        if(page == 5) return;
+        page++;
+    } else if(e.originalEvent.deltaY < 0) {
+        if(page == 1) return;
+        page--;
+    }
+    var posTop = (page-1) * $(window).height();
+    mHtml.animate({scrollTop : posTop});
+});
+</script>
 </head>
 <body>
 <script>
@@ -133,7 +93,11 @@
 </script>
 
 <% String memberId = (String) session.getAttribute("loggedInId"); %>
-
+<header class="header-fixed">
+	<jsp:include page="/include/mainHeader.jsp"></jsp:include>
+</header>
+<br><br><br><br><br>
+<div id="menu_wrap">
 <h1>내 정보 수정 - <%=memberId%></h1>
 <form action="manageMember.bank" method="post">
     <table>
@@ -163,5 +127,9 @@
     <input type="hidden" name="id" id="id" value="<%= request.getParameter("id") %>">
     <input type="submit" value="수정">
 </form>
+</div>
+	<div>
+	<jsp:include page="/include/mainFooter.jsp"></jsp:include>`
+    </div>
 </body>
 </html>

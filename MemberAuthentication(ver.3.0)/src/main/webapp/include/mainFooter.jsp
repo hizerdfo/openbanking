@@ -19,6 +19,7 @@
 </style>
 </head>
 <body>
+<br><br><br><br><br><br><br><br>
 	<div id="terms">
     	<p>이용약관 | 위치정보 이용약관 | 개인정보처리방침 | 운영정책 | 공지사항 | 사이버윤리실 | Contact Us </p>
 		<p>© Kakao Corp. All rights reserved.</p>

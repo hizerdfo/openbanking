@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="static/css/styles.css">
 <meta charset="UTF-8">
 <title>유저정보</title>
-<link rel="stylesheet" href="static/css/styles.css">
+<link rel="stylesheet" href="/static/css/styles.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">

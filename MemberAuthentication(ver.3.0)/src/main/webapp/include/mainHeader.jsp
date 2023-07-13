@@ -25,7 +25,7 @@
         <div id="main-text">
        	<a href ="Main.jsp">
          <img src="static/img/logo.png" width="50px">
-          zero Bank
+          Bank
        </a>
        </div>
 		<%-- <%
@@ -48,13 +48,16 @@
 		    if (isAdmin) {
 		out.println("TH은행 관리자 페이지");
 		        %>
-
-		<li><a href="./manageAdmin.bankadmin">회원관리</a></li>
-		<li><a href="./logout.bank">로그아웃</a></li>
+		<div class="menu">
+			<a href="./manageAdmin.bankadmin" id="menu-button">회원관리</a>
+			<a href="./logout.bank" id="menu-button2">로그아웃</a>
+		</div>
 		<%
 		} else {
-			out.println(name + "(" + id + ")" + "님 환영합니다.");
+			String message = name + "(" + id + ")" + "님 환영합니다.";
 		%>
+		
+		<p id="welcomeMessage"><br><%= message %></p>
 		<div class="menu"> <!-- 버튼 컨테이너로 감싸줍니다. -->
           <a href="./accountSelect.bank" id="menu-button"> 조회 </a>
           <a href="./transfer.bank" id="menu-button"> 이체 </a>

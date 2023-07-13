@@ -6,103 +6,54 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 정보 수정</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <style>
-@font-face {
-	font-family: 'Tenada';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2')
-		format('woff2');
-	font-weight: normal;
-	font-style: normal;
-}
-
-body {
-	font-family: 'Tenada', Arial, sans-serif;
-	background-color: #f2f2f2;
-	display: flex;
-	align-items: center; /* 수직 가운데 정렬 */
-	justify-content: center; /* 수평 가운데 정렬 */
-	min-height: 100vh; /* 화면 전체 높이로 설정 */
-	margin: 0;
-	padding: 20px;
-}
-
-h1 {
-	text-align: center;
-}
-
-form {
-	max-width: 1000px;
-	margin: 0 auto;
-	background-color: #fff;
-	border-radius: 5px;
-	padding: 20px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-form table {
-	width: 100%;
-}
-
-form table td {
-	padding: 5px;
-}
-
-input[type="text"], input[type="password"], input[type="email"], input[type="tel"]
-	{
-	width: 90%;
-	padding: 8px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-}
-
-input[type="submit"] {
-	width: 200px;
-	padding: 8px;
-	border: none;
-	background-color: #4CAF50;
-	color: #fff;
-	cursor: pointer;
-	border-radius: 4px;
-}
-
-input[type="submit"]:hover {
-	background-color: #45a049;
-}
-
-#loginButton {
-	background-color: #000000;
-}
-
-#joinButton {
-	
-}
-
-button {
-	width: 200px;
-	padding: 8px;
-	border: none;
-	background-color: #555;
-	color: #fff;
-	cursor: pointer;
-	border-radius: 4px;
-	display: inline-block;
-	margin-right: 10px;
-}
-
-button:hover {
-	background-color: #333;
-}
+ @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
+ @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');  
 
 .error-message {
 	color: red;
 	display: none;
 }
 </style>
+<script>
+window.addEventListener("wheel", function(e){
+    e.preventDefault();
+},{passive : false});
+
+var mHtml = $("html");
+var page = 1;
+
+mHtml.animate({scrollTop : 0}, 10);
+
+$(window).on("wheel", function(e) {
+    if(mHtml.is(":animated")) return;
+    if(e.originalEvent.deltaY > 0) {
+        if(page == 5) return;
+        page++;
+    } else if(e.originalEvent.deltaY < 0) {
+        if(page == 1) return;
+        page--;
+    }
+    var posTop = (page-1) * $(window).height();
+    mHtml.animate({scrollTop : posTop});
+});
+</script>
 </head>
 <body>
+<header class="header-fixed">
+	<jsp:include page="/include/mainHeader.jsp"></jsp:include>
+</header>
+<br><br><br><br><br><br><br><br>
+<div id="menu_wrap>
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
@@ -249,6 +200,18 @@ button:hover {
 				pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$" required disabled></td>
 		</tr>
 		<tr>
+		  <td><b>현재 비밀번호:</b></td>
+		  <td><input type="password" name="current_password" required></td>
+		</tr>
+		<tr>
+		  <td><b>새로운 비밀번호:</b></td>
+		  <td><input type="password" name="new_password" required></td>
+		</tr>
+		<tr>
+		  <td><b>비밀번호 확인:</b></td>
+		  <td><input type="password" name="confirm_password" required></td>
+		</tr>
+		<tr>
 			<td colspan="2" id="passwordError" class="error-message">영문과
 				숫자의 조합으로 4자리 이상 입력해주세요.</td>
 		</tr>
@@ -291,17 +254,15 @@ button:hover {
 		<br>
 		<tr>
 			<td></td>
-			<td>
+			<td style="text-align:center;">
 				<input id="joinButton" type="submit" value="회원 정보 수정">
+				<button id="loginButton" onclick="location.href='./Main.bank'">메인페이지로 이동</button>
+		
 			</td>
 	</table>
 			</form>
 		<tr>
-		
-		
-			<td>	
-				<button id="loginButton" onclick="location.href='./Main.bank'">메인페이지로 이동</button>
-			</td>
+
 		</tr>
 		<% } else { %>
 <!-- 			String password = (String) session.getAttribute("password"); -->
@@ -382,26 +343,32 @@ button:hover {
             </tr>
             <tr>
 					<td></td>
+					</tr>
+
+			
+					
+				<tr>
+				
 					<td>
 						<input id="joinButton" type="submit" value="회원 정보 수정">
 					</td>
-
-			</table>
-					</form>
-				<tr>
+					<td>	
+						<button id="loginButton" onclick="location.href='./Main.bank'">메인</button>
+					</td>
 					<td>
 						<button id="loginButton" onclick="location.href='./deleteMember.bank'">회원 삭제</button>
 					</td>				
 				
-					<td>	
-						<button id="loginButton" onclick="location.href='./Main.bank'">메인페이지로 이동</button>
-					</td>
+					
 				</tr>
 		
 
 <%} %>
-<br>
-
+<br></table></form>
+	</div>
+	<div>
+	<jsp:include page="/include/mainFooter.jsp"></jsp:include>`
+    </div>
 
 </body>
 </html>

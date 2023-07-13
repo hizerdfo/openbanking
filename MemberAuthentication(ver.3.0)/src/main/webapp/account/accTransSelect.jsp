@@ -9,44 +9,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+<link rel="stylesheet" href="/static/css/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
+ @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');  
 
-        th {
-            background-color: #f2f2f2;
-        }
+</style>
+<script>
+window.addEventListener("wheel", function(e){
+    e.preventDefault();
+},{passive : false});
 
-        .checkbox-cell {
-            text-align: center;
-            padding-right: 20px;
-        }
+var mHtml = $("html");
+var page = 1;
 
-        .name-cell {
-            padding-left: 20px;
-        }
-    </style>
+mHtml.animate({scrollTop : 0}, 10);
+
+$(window).on("wheel", function(e) {
+    if(mHtml.is(":animated")) return;
+    if(e.originalEvent.deltaY > 0) {
+        if(page == 5) return;
+        page++;
+    } else if(e.originalEvent.deltaY < 0) {
+        if(page == 1) return;
+        page--;
+    }
+    var posTop = (page-1) * $(window).height();
+    mHtml.animate({scrollTop : posTop});
+});
+</script>
 </head>
 <body>
-    <h2>상품 선택</h2>
-    변경하실 예금 상품을 선택해주세요.
+<header class="header-fixed">
+	<jsp:include page="/include/mainHeader.jsp"></jsp:include>
+</header>
+<br><br><br><br><br><br><br>
+<div id="menu_wrap">
+    <h1>상품 선택</h1>
+    <h2>변경하실 예금 상품을 선택해주세요.</h2>
     <br />
     <br />
 
     <form action="accTransOk.bank" method="post">
-        <table>
+        <table >
             <thead>
                 <tr>
-                    <th class="name-cell">계좌 상품명</th>
-                    <th class="checkbox-cell">선택</th>
+                    <th class="name-cell" style="text-align: center; font-size:20px;">계좌 상품명</th>
+                    <th class="checkbox-cell" style="text-align: center; font-size:20px;">선택</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,7 +77,8 @@
                 %>
                 
                 <tr>
-                    <td class="name-cell"><%=accName1%></td> 
+                
+                    <td class="name-cell" style="text-align: center; font-size:20px;"><%=accName1%></td>
                     <td class="checkbox-cell">
                         <input type="radio" name="selectedAccName" value="<%=accName1%>"> 
                     </td>
@@ -73,5 +91,9 @@
         <br>
         <input type="submit" value="변경">
     </form>
+    </div>
+    <div>
+	<jsp:include page="/include/mainFooter.jsp"></jsp:include>`
+    </div>
 </body>
 </html>

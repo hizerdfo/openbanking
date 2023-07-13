@@ -4,14 +4,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/static/css/styles.css?a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
+ @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');  
+
+</style>
 </head>
 <body>
+<header class="header-fixed">
+	<jsp:include page="/include/mainHeader.jsp"></jsp:include>
+</header>
+<br><br><br><br><br>
+	
+<div id="menu_wrap">
 <%
 	String timeDepositCode = request.getParameter("timeDepositCode");
 	String timeDepositType = request.getParameter("timeDepositType");
 	String timeDepositName = request.getParameter("timeDepositName");
 %>
-<h2>상품 가입</h2>
+
+<h1>상품 가입</h1>
 아래 항목을 기입해주세요 <br/><br/>
 <form action="insertAccount.bank" method="post">
 
@@ -46,7 +67,9 @@ function validatePassword() {
   }
 }
 </script>
-
-</script>
+</div>
+<div>
+<jsp:include page="/include/mainFooter.jsp"></jsp:include>`
+   </div>
 </body>
 </html>

@@ -40,32 +40,33 @@ public class DTO {
         this.extraAddress = extraAddress;
     }
     
-    public DTO(String id, String name, String password) {
+    public DTO(String id, String name, String password, String email) {
         this.id = id;
         this.name = name;
         this.password = password;
+        this.email = email;
     }
     
     public DTO(String id, String bankCode,String name, String password, String identityNum,
-               String phoneNum, String email, String postalCode, String address, String detailAddress, 
-               String jibunAddress, String extraAddress
-               ) {
+            String phoneNum, String email, String postalCode, String address, String detailAddress, 
+            String jibunAddress, String extraAddress
+            ) {
 
-        this.id = id;
-        this.bankCode = bankCode;
-        this.name = name;
-        this.password = password;
-        this.identityNum = identityNum;
-        this.phoneNum = phoneNum;
-        this.email = email;
-        this.address = address;
-        this.detailAddress = detailAddress;
-        this.postalCode = postalCode;
-        this.grade = grade;
-        this.status = status;
-        this.jibunAddress = jibunAddress;
-        this.extraAddress = extraAddress;
-    }
+     this.id = id;
+     this.bankCode = bankCode;
+     this.name = name;
+     this.password = password;
+     this.identityNum = identityNum;
+     this.phoneNum = phoneNum;
+     this.email = email;
+     this.address = address;
+     this.detailAddress = detailAddress;
+     this.postalCode = postalCode;
+     this.grade = grade;
+     this.status = status;
+     this.jibunAddress = jibunAddress;
+     this.extraAddress = extraAddress;
+ }
 
     public DTO(String name2, String phoneNum2, String identityNum,String email2, String postalCode2, String address2,
             String jibunAddress, String detailAddress2, String extraAddress2, String grade2) {

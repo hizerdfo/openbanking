@@ -4,7 +4,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="static/css/styles.css?a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+
 <style>
+ @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
+ @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');  
+
 .scrollable {
 	max-height: 200px;
 	overflow-y: scroll;
@@ -22,6 +33,30 @@
 	margin-right: 5px;
 }
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+window.addEventListener("wheel", function(e){
+    e.preventDefault();
+},{passive : false});
+
+var mHtml = $("html");
+var page = 1;
+
+mHtml.animate({scrollTop : 0}, 10);
+
+$(window).on("wheel", function(e) {
+    if(mHtml.is(":animated")) return;
+    if(e.originalEvent.deltaY > 0) {
+        if(page == 5) return;
+        page++;
+    } else if(e.originalEvent.deltaY < 0) {
+        if(page == 1) return;
+        page--;
+    }
+    var posTop = (page-1) * $(window).height();
+    mHtml.animate({scrollTop : posTop});
+});
+</script>
 <script>
 function toggleCheckbox(checkbox) {
   var checkbox1 = document.getElementById("checkbox1");
@@ -49,6 +84,10 @@ function validateForm() {
 </script>
 </head>
 <body>
+<header class="header-fixed">
+	<jsp:include page="include/mainHeader.jsp"></jsp:include>
+</header>
+<br><br><br><br><br><br>
 	<form action="accountInput.bank" method="post" onsubmit="return validateForm();">
 		<h1>비대면 계좌개설 약관 동의</h1>
 		<h2>약관 동의</h2>
@@ -119,5 +158,12 @@ function validateForm() {
 		<input type="hidden" name="timeDepositName" value="<%=timeDepositName%>"> 
 		<input type="submit" value="확인">
 	</form>
+	<br><br><br><br>
+
+<footer>
+<div>
+<jsp:include page="include/mainFooter.jsp"></jsp:include>`
+</div>
+</footer>
 </body>
 </html>

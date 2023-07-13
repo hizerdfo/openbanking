@@ -22,7 +22,7 @@
         <div id="main-text">
        	<a href ="Main.jsp">
          <img src="static/img/logo.png" width="50px">
-          zero Bank
+          Bank
        </a>
        </div>
 		<div class="menu">

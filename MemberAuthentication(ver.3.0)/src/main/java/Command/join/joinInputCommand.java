@@ -18,7 +18,7 @@ public class joinInputCommand implements Command {
     @Override
     public String getViewPage() {
         if (viewPage == null) {
-            viewPage = "../error.jsp";
+            viewPage = "./error.bank";
         }
         return viewPage;
     }

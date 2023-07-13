@@ -21,9 +21,37 @@
  @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');  
 
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+window.addEventListener("wheel", function(e){
+    e.preventDefault();
+},{passive : false});
+
+var mHtml = $("html");
+var page = 1;
+
+mHtml.animate({scrollTop : 0}, 10);
+
+$(window).on("wheel", function(e) {
+    if(mHtml.is(":animated")) return;
+    if(e.originalEvent.deltaY > 0) {
+        if(page == 5) return;
+        page++;
+    } else if(e.originalEvent.deltaY < 0) {
+        if(page == 1) return;
+        page--;
+    }
+    var posTop = (page-1) * $(window).height();
+    mHtml.animate({scrollTop : posTop});
+});
+</script>
 </head>
 <body>
-<jsp:include page ="/include/menuHeader.jsp"></jsp:include>
+<header class="header-fixed">
+	<jsp:include page="/include/mainHeader.jsp"></jsp:include>
+</header>
+<br><br><br><br><br><br>
 	<div class ="container">
 <%
     String name = (String) session.getAttribute("name");
@@ -76,14 +104,14 @@
         <td><%= accBalance %></td>
         
         <td>
-            <form action="accountManage.bank" method="post">
+            <form action="accountManage.bank" method="post" style="border: none;">
                 <input type="hidden" name="accTypeName" value="<%= accTypeName %>">
                 <input type="hidden" name="accName" value="<%= accName %>">
                 <input type="hidden" name="accNum" value="<%= accNum %>">
                 <input type="hidden" name="accBalance" value="<%= accBalance %>">
                 <input type="hidden" name="accPw" id="accPw" value="<%= accPw %>">
                 
-                <input type="submit" value="계좌관리">
+                <input type="submit" value="계좌관리" >
             </form>
         </td>
     </tr>
@@ -95,5 +123,9 @@
 <br/><br/>
 <button onclick="window.location.href='./Main.jsp'" class="custom-button">메인으로</button>
 </div>
+<div>
+	<jsp:include page="/include/mainFooter.jsp"></jsp:include>`
+    </div>
+
 </body>
 </html>

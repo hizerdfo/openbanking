@@ -32,9 +32,9 @@
         auth="Container"
         type="javax.sql.DataSource"
         driverClassName="oracle.jdbc.driver.OracleDriver"
-        url="jdbc:oracle:thin:@dinkdb_medium?TNS_ADMIN=F:/SQLDEV/Wallet_DinkDB"
-        username="DA2307"
-        password="Data2307"
+        url="jdbc:oracle:thin:@dinkdb_medium?TNS_ADMIN=F:/SQLDEV/Wallet_KOPOOPENBANKINGDB"
+        username="adimin"
+        password="@oraclepass12A"
         maxActive="50"
         maxWait="1000"
     />

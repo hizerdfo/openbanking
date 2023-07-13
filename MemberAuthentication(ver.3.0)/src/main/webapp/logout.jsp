@@ -5,65 +5,35 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<link rel="stylesheet" href="static/css/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <style>
-body {
-	font-family: Arial, sans-serif;
-	background-color: #f5f5f5;
-	margin: 0;
-	padding: 20px;
-}
+ @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
+ @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');  
 
-.container {
-	max-width: 600px;
-	margin: 0 auto;
-	background-color: #fff;
-	padding: 20px;
-	border-radius: 5px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-	color: #333;
-	margin-top: 0;
-}
-
-li {
-	margin-bottom: 10px;
-}
-
-a {
-	color: #333;
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-button {
-	width: 200px;
-	padding: 8px;
-	border: none;
-	background-color: #555;
-	color: #fff;
-	cursor: pointer;
-	border-radius: 4px;
-	margin: 0 auto;
-	display: block;
-}
-
-button:hover {
-	background-color: #333;
-}
 </style>
 </head>
 <body>
+<jsp:include page="include/mainHeader.jsp"></jsp:include>
 	<div class="container">
 		<% session.invalidate(); %>
+		<br><br><br><br>
 		<h1>로그아웃되었습니다.</h1>
+		
+		<img src="static/img/bye.jpg" width="500px" text-align="center">
 		<ul>
-			<button onclick="location.href='Main.bank'">메인 페이지로 이동</button>
-		</ul>
+		<button onclick="location.href='Main.bank'" class="button1">메인 페이지</button></ul>
+		<br><br><br>
 	</div>
+	<div>
+	<jsp:include page="include/mainFooter.jsp"></jsp:include>`
+    </div>
 </body>
 </html>

@@ -20,6 +20,13 @@
  @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
  @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');  
 
+html, body {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    
+}
 </style>
 <script>
 window.addEventListener("wheel", function(e){
@@ -45,23 +52,19 @@ $(window).on("wheel", function(e) {
 });
 </script>
 </head>
-	<body>
+<body>
 <header class="header-fixed">
 	<jsp:include page="include/mainHeader.jsp"></jsp:include>
 </header>
 <br><br><br><br><br>
 	
     <div id ="main_wrap">
-    <div class ="section id="section1">
+    <div class ="section" id="section1">
     <div id="main_color">
   <div id="main_content">
     <h3>제로뱅크 기록통장 첫번째 서비스</h3>
-    <h1>사랑하는 만큼,</h1>
-    
-    <div id="image-container">
-      <img src="static/img/main_icon_bank.png" class="image">
-      <h1>제로적금</h1>
-    </div>
+	<h1>사랑하는 만큼,</h1>
+    <h1>제로적금</h1>
     <br>
     <p>사랑하는 대상과의 의미있는 순간마다</p>
     <p>규칙을 정해서 돈을 모을 수 있어요.</p>
@@ -69,11 +72,15 @@ $(window).on("wheel", function(e) {
     <div id="button-container">
       <a href="#" class="button">고객센터</a>
       <a href="#" class="button">이벤트</a>
-      <img src="static/img/main_phone.png" width="400px" class="image main_p">
-    </div>
+      </div>
   </div>
 </div>
-    ><div class="section" id="section2">
+    <div class="section" id="section2">
+    <br><br><br><br><br><br><br><br><br>
+    <h1>놀라운 혜택이 팡팡!</h1>
+    <h3>하루하루 돈이 들어오는 이벤트</h3>
+    <br>
+    <img src="https://cdn.dribbble.com/users/2287419/screenshots/15663694/media/74936224354b5bace24995f237dd5d06.gif" width="500px" style="margin: 0 auto; text-align: center;">
     <br><br><br><br><br><br><br><br><br>
     	<h1>제로결제</h1>
     <h3>수수료 없는 제로 결제,</h3>
@@ -96,6 +103,8 @@ $(window).on("wheel", function(e) {
 	<h3>마음껏 행복한 나날을 보내세요</h3>
 	<img src="static/img/gift.jpg" width="400px">
 	<br><br><br><br><br><br>
+	</div>
+	</div>
 	</div>
 	<div>
 	<jsp:include page="include/mainFooter.jsp"></jsp:include>`
